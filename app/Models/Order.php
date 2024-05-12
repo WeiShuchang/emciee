@@ -26,6 +26,10 @@ class Order extends Model
         'total_price',
         'is_delivered',
         'is_shipped',
+        'cancelled_notif',
+        'delivered_norif',
+        'fb_name',
+        'phone_number',
         'status',
     ];
 }

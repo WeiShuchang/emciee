@@ -17,25 +17,27 @@
         <div class="row border-top px-xl-5">
             <div class="col-lg-12">
             @include('customer.messages')
+            @if($cancelledOrders >= 1)
+            <div class="alert alert-danger" role="alert" id="" style="display:flex; justify-content:center;">
+                You have Cancelled Orders!
+                <form action="{{route('hide_notif_cancelled')}}" method="post">
+                    @csrf
+                    <button type="submit" class="btn-primary" href="">View</button>
+                </form>
+            </div>
+            @endif
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" style="height: 500px;">
-                            <img class="img-fluid" src="{{ asset('img/contact-card.jpg') }}" alt="Image">
+                            <img class="img-fluid" src="{{ asset('img/banner-1.jpg') }}" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                                <div class="p-3" style="max-width: 700px;">
-                                <h3 class="display-4 text-white font-weight-semi-bold mb-4">Emciee's ArtShop</h3>
-                                    <a href="{{route('login')}}" class="btn btn-light py-2 px-3">Shop Now</a>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="carousel-item" style="height: 500px;">
-                            <img class="img-fluid" src="{{ asset('img/carousel-2.jpg') }}" alt="Image">
+                            <img class="img-fluid" src="{{ asset('img/banner-2.jpg') }}" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                                <div class="p-3" style="max-width: 700px;">
-                                    <!-- <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4> -->
-                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Emciee's ArtShop</h3>
-                                    <a href="{{route('login')}}" class="btn btn-light py-2 px-3">Shop Now</a>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -101,7 +103,7 @@
                 <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                     <h6 class="text-truncate mb-3">{{ $product->name }}</h6>
                     <div class="d-flex justify-content-center">
-                        <h6>${{ $product->price }}</h6>
+                        <h6>₱{{ $product->price }}</h6>
                     </div>
                 </div>
                 <div class="card-footer d-flex justify-content-center bg-light border">
@@ -119,6 +121,35 @@
           
         </div>
     </div>
+   
+
+    @if($cancelledOrders >= 1)
+<!-- Confirmation Modal -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">Confirm Adding to Cart</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to add <span id="quantityConfirmation"></span> item(s) to your cart?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" form="add-to-cart-form" class="btn btn-primary">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
+
+  
+
+
 
     <script>
          document.addEventListener("DOMContentLoaded", function() {
@@ -132,5 +163,36 @@
         }, 4000);
     });
 
+    $(document).ready(function(){
+        // Show modal when document is ready (remove this if not desired)
+        $('#viewDeliveredModal').modal('show');
+
+        $(".fancybox").fancybox({
+            openEffect: "none",
+            closeEffect: "none"
+        });
+
+        $(".zoom").hover(function(){
+            $(this).addClass('transition');
+        }, function(){
+            $(this).removeClass('transition');
+        });
+
+        // Hide success message after 5 seconds
+        let alertMessage = document.getElementById("alert-message");
+        setTimeout(function() {
+            alertMessage.style.display = "none";
+        }, 5000); 
+    });
+
+    $(document).ready(function(){
+        // Function to close the modal when the close button is clicked
+        $('#closeModalButtonJS').click(function(){
+            $('#viewDeliveredModal').modal('hide');
+        });
+    });
+
     </script>
+
+  
     @endsection

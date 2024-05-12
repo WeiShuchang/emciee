@@ -40,7 +40,7 @@ class AuthenticatedSessionController extends Controller
         }
 
         // If the user's role is not defined, redirect to default dashboard
-        return redirect()->intended(route('/', absolute: false))->with('success', 'Login successful!');
+        return redirect()->intended(route('user', absolute: false))->with('success', 'Login successful!');
     }
 
     /**

@@ -16,7 +16,14 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->boolean('is_delivered')->default(false);
             $table->boolean('is_shipped')->default(false);
+            $table->boolean('cancelled')->default(false);
+            $table->string('reason_for_cancelling',50)->nullable();
             $table->string('status')->default('cart');
+            $table->boolean('cancellled_notif')->default(false);
+            $table->boolean('delivered_notif')->default(false);
+            $table->string('fb_name',50)->nullable();
+            $table->string('phone_number',50)->nullable();
+            $table->integer('rating')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');

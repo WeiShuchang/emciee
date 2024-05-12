@@ -84,10 +84,9 @@
                                 <h5 class="font-weight-bold">Total Price</h5>
                                 <h5 class="font-weight-bold">${{ $totalPrice }}</h5>
                             </div>
-                            <form action="{{ route('checkout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
-                            </form>
+                            
+                                <button type="button" class="btn btn-block btn-primary my-3 py-3" data-toggle="modal" data-target="#confirmationModal"><i class="fa fa-shopping-cart mr-1"></i> Checkout</button>
+                         
                         </div>
                           <!-- Pagination links -->
                 <div>
@@ -99,6 +98,38 @@
             </div>
         </div>
     </div>
+
+  <!-- Confirmation Modal -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">Confirm Checkout</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="checkoutForm" action="{{ route('checkout') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="fbName">Facebook Name</label>
+                        <input type="text" class="form-control" id="fbName" name="fb_name" placeholder="Enter Facebook Name" value="{{ old('fb_name') }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="number" class="form-control" id="phoneNumber" name="phone_number" placeholder="Enter Phone Number" value="{{ old('phone_number') }}" required>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" form="checkoutForm" class="btn btn-primary">Checkout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
     <!-- Cart End -->
     <script>

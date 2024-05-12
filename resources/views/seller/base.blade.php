@@ -60,6 +60,38 @@
                 </li>
               </ul >
               <ul class="navbar-nav ml-auto mr-0">
+			  	<li class="nav-item dropdown">
+				  <span class="dropdown">
+						<button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Orders</button>
+							<div class="dropdown-menu dropdown-menu-end">
+								<a class="dropdown-item" href="{{route('view_checkedout_admin')}}">
+									Checked Out
+								</a>
+								<a class="dropdown-item" href="{{route('seller.shipped_products')}}">
+									Shipped
+								</a>
+								<a class="dropdown-item" href="{{route('seller.delivered_orders')}}">
+									Delivered 
+								</a>
+								<a class="dropdown-item" href="{{route('seller.cancelled_orders')}}">
+									Cancelled
+								</a>
+							
+							</div>
+					</span>
+				</li>
+
+				<li class="nav-item active">
+                  <a class="nav-link" href="{{route('seller.delivered_orders')}}" >
+                    <span class="nav-link-title">
+                      Reports
+                    </span>
+                  </a>
+                </li>
+
+				
+
+
                 <li class="nav-item active">
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="mx-3 nav-link left">Logout</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

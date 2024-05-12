@@ -52,26 +52,26 @@
                             @method('PUT')
                             <div class="mb-3">
                                 <label class="form-label">Product Name</label>
-                                <input type="text" class="form-control" name="name" value="{{ $product->name }}">
+                                <input type="text" class="form-control" name="name" value="{{ old('name', $product->name) }}">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Description</label>
-                                <textarea class="form-control" name="description" rows="3">{{ $product->description }}</textarea>
+                                <textarea class="form-control" name="description" rows="3">{{ old('description', $product->description) }}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Stock</label>
-                                <input type="number" class="form-control" name="stock" value="{{ $product->stock }}">
+                                <input type="number" class="form-control" name="stock" value="{{ old('stock', $product->stock) }}">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Price</label>
-                                <input type="number" class="form-control" name="price" value="{{ $product->price }}">
+                                <input type="number" class="form-control" name="price" value="{{ old('price', $product->price) }}">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Art Type</label>
                                 <select class="form-select" name="arttype_id">
-                                    <option value="">Select Art Type</option>
+                                    
                                     @foreach($arttypes as $arttype)
-                                    <option value="{{ $arttype->id }}" {{ $product->arttype_id == $arttype->id ? 'selected' : '' }}>{{ $arttype->name }}</option>
+                                    <option value="{{ $arttype->id }}" {{ old('arttype_id', $product->arttype_id) == $arttype->id ? 'selected' : '' }}>{{ $arttype->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

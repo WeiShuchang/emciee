@@ -48,7 +48,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:255|unique:products,name',
             'description' => 'nullable|string',
             'stock' => 'required|integer|min:0',
-            'price' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:1',
             'arttype_id' => 'nullable|exists:art_types,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif', // Add validation for image field
         ], [
@@ -98,7 +98,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:255|unique:products,name,' . $product->id,
             'description' => 'nullable|string',
             'stock' => 'required|integer|min:0',
-            'price' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:1',
             'arttype_id' => 'nullable|exists:art_types,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif', // Add validation for image field
         ], [

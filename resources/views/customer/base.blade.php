@@ -35,16 +35,7 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
-                </form>
+               
             </div>
             <div class="col-lg-3 col-6 text-right">
                 @auth <!-- Check if user is authenticated -->
@@ -67,7 +58,7 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <div class="navbar-nav mr-auto py-0">
                 <a href="{{route('user')}}" class="nav-item nav-link active">Home</a>
-                <a href="{{ url('shop.html') }}" class="nav-item nav-link">Shop</a>
+                <a href="{{ route('shop') }}" class="nav-item nav-link">Shop</a>
          
             </div>
             <div class="navbar-nav ml-auto py-0">
@@ -75,6 +66,18 @@
                     <a href="{{ route('cart.view') }}" class="mx-3 nav-link left">
                         <i class="fas fa-shopping-cart text-primary"></i>
                         <span class="badge">{{ $cartCount }}</span> <!-- Display the cart count here -->
+                    </a>
+                </li>
+
+                <li  class="nav-item active">
+                    <a href="{{ route('user.orders') }}" class="mx-3 nav-link left">
+                        Orders
+                    </a>
+                </li>
+
+                <li  class="nav-item active">
+                    <a href="{{ route('view_cancelled_user') }}" class="mx-3 nav-link left">
+                        Cancelled 
                     </a>
                 </li>
               
